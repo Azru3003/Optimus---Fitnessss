@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Optimus Fitness Center</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; color: #333; }
+    header {
+      background-color: #20232a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-bottom: 3px solid #20232a;
+    }
+    header img {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .intro-text {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 16px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .button, .sub-button {
+      padding: 12px 24px; margin: 8px; font-size: 15px; font-weight: bold;
+      border: none; border-radius: 6px; cursor: pointer; color: white;
+    }
+    .button.varones { background-color: #e63946; }
+    .button.mujeres { background-color: #0077b6; }
+    .sub-button { background-color: #6c757d; color: #fff; }
+    .hidden { display: none; }
+    .day-panel {
+      background: #fff; border-radius: 10px; padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-top: 15px;
+    }
+  </style>
+  <script>
+    function mostrarGenero(genero) {
+      ['varones', 'mujeres'].forEach(g => document.getElementById(g + 'Panel').classList.add('hidden'));
+      document.getElementById(genero + 'Panel').classList.remove('hidden');
+    }
+
+    function mostrarSeccion(base, tipo) {
+      ['Ejercicios','Nutricion'].forEach(s => document.getElementById(base + s).classList.add('hidden'));
+      document.getElementById(base + tipo).classList.remove('hidden');
+    }
+
+    function mostrarDia(base, dia) {
+      ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'].forEach(d => {
+        let p = document.getElementById(base + d);
+        if (p) p.classList.add('hidden');
+      });
+      document.getElementById(base + dia).classList.remove('hidden');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    
+    <h1>Optimus Fitness Center</h1>
+  </header>
+
+  
+
+
+<script>
+function calcularProteina() {
+  const peso = parseFloat(document.getElementById('peso').value);
+  const estatura = parseFloat(document.getElementById('estatura').value);
+  const factor = parseFloat(document.getElementById('factor').value);
+  const resultado = document.getElementById('resultado');
+
+  if (!peso || peso <= 0 || !estatura || estatura <= 0) {
+    resultado.textContent = "Por favor, ingresa datos válidos.";
+    return;
+  }
+
+  const proteina = peso * factor;
+  resultado.textContent = `Deberías consumir aproximadamente ${proteina.toFixed(1)} g de proteína al día.`;
+}
+</script>
+
+<div style="text-align: center; margin-top: 30px;">
+  <button onclick="document.getElementById('calculadora').classList.toggle('hidden')" 
+    style="padding: 12px 24px; font-size: 16px; font-weight: bold; background-color: #333; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    Calcular proteína diaria
+  </button>
+</div>
+
+<div id="calculadora" class="hidden" style="margin-top: 30px; background: #fff; padding: 20px; border-radius: 10px; max-width: 700px; margin-left: auto; margin-right: auto;">
+  <h3 style="text-align:center;">Calculadora de Proteína</h3>
+  <p style="text-align:center;">Basado en peso (kg) y estatura (cm). Fórmula estimada: 1.8g proteína × peso</p>
+  <label for="peso">Peso corporal (kg):</label>
+  <input type="number" id="peso" placeholder="Ejemplo: 70" style="width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ccc;">
+  <label for="estatura">Estatura (cm):</label>
+  <input type="number" id="estatura" placeholder="Ejemplo: 170" style="width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ccc;">
+  <label for="factor">Nivel de actividad:</label>
+  <select id="factor" style="width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;margin-bottom:15px;">
+    <option value="1.6">Bajo</option>
+    <option value="1.8" selected>Moderado</option>
+    <option value="2.0">Alto</option>
+    <option value="2.2">Muy alto</option>
+  </select>
+  <button onclick="calcularProteina()" style="width:100%;background-color:#0077b6;color:white;padding:10px;border:none;border-radius:6px;">Calcular</button>
+  <div id="resultado" style="margin-top:20px;text-align:center;font-weight:bold;"></div>
+</div>
+<div class="intro-text">
+    <p>
+      ¡Bienvenido! Si estás listo para cambiar tu vida pero no sabes por dónde empezar, este es el lugar indicado.
+      Aquí encontrarás los ejercicios ideales para tus objetivos, una guía nutricional sencilla y consejos prácticos
+      para mantenerte motivado y avanzar de forma segura. Empieza hoy y construye la mejor versión de ti.
+    </p>
+  </div>
+
+  <section>
+    <button class="button varones" onclick="mostrarGenero('varones')">Ver Guías – Varones</button>
+    <button class="button mujeres" onclick="mostrarGenero('mujeres')">Ver Guías – Mujeres</button>
+
+    
+
+<div id="varonesPanel" class="hidden">
+      <button class="sub-button" onclick="mostrarSeccion('varones','Ejercicios')">Ejercicios</button>
+      <button class="sub-button" onclick="mostrarSeccion('varones','Nutricion')">Guía Nutricional</button>
+
+      <div id="varonesEjercicios" class="hidden">
+        <h3>Selecciona un día</h3>
+        <button class="sub-button" onclick="mostrarDia('varones','Lunes')">Lunes</button>
+        <button class="sub-button" onclick="mostrarDia('varones','Martes')">Martes</button>
+        <button class="sub-button" onclick="mostrarDia('varones','Miércoles')">Miércoles</button>
+        <button class="sub-button" onclick="mostrarDia('varones','Jueves')">Jueves</button>
+        <button class="sub-button" onclick="mostrarDia('varones','Viernes')">Viernes</button>
+        <button class="sub-button" onclick="mostrarDia('varones','Sábado')">Sábado</button>
+        <div id="varonesLunes" class="hidden day-panel"><h4>Lunes – Pecho y Tríceps</h4><ul><li>Press de banca – 4x10</li><li>Fondos – 3x12</li><li>Extensiones – 3x15</li></ul></div>
+        <div id="varonesMartes" class="hidden day-panel"><h4>Martes – Espalda y Bíceps</h4><ul><li>Jalón – 4x12</li><li>Remo – 3x10</li><li>Curl – 3x12</li></ul></div>
+        <div id="varonesMiércoles" class="hidden day-panel"><h4>Miércoles – Piernas</h4><ul><li>Sentadillas – 4x10</li><li>Prensa – 3x12</li><li>Peso muerto – 3x10</li></ul></div>
+        <div id="varonesJueves" class="hidden day-panel"><h4>Jueves – Hombros y abdomen</h4><ul><li>Press militar – 3x10</li><li>Elevaciones – 3x15</li><li>Plancha – 3x30 seg</li></ul></div>
+        <div id="varonesViernes" class="hidden day-panel"><h4>Viernes – Funcional</h4><ul><li>Burpees – 3x15</li><li>Saltos – 3x30 seg</li><li>Kettlebell – 3x15</li></ul></div>
+        <div id="varonesSábado" class="hidden day-panel"><h4>Sábado – Cardio y estiramientos</h4><ul><li>30 min trote</li><li>Estiramiento</li></ul></div>
+      </div>
+
+      <div id="varonesNutricion" class="hidden day-panel">
+<h3>Guía Nutricional – Varones</h3>
+<h4>Objetivo: Ganar masa muscular</h4>
+<ul>
+  <li><strong>Desayuno:</strong> Avena con plátano, huevo cocido y pan integral</li>
+  <li><strong>Almuerzo:</strong> Arroz, papa o fideos con pollo a la plancha y ensalada mixta</li>
+  <li><strong>Snack:</strong> Yogurt natural con granola o frutas secas</li>
+  <li><strong>Cena:</strong> Sopa ligera + pescado al vapor o tortilla de huevo con vegetales</li>
+</ul>
+
+<h4>Objetivo: Perder grasa corporal</h4>
+<ul>
+  <li><strong>Desayuno:</strong> Batido de frutas con avena y linaza</li>
+  <li><strong>Almuerzo:</strong> Pollo al horno con camote y ensalada verde</li>
+  <li><strong>Snack:</strong> Fruta fresca o puñado de nueces</li>
+  <li><strong>Cena:</strong> Sopa vegetal y filete de pescado o pechuga a la plancha</li>
+</ul>
+
+<p style="margin-top:10px;"><em>Nota:</em> Estas guías son referenciales. No es obligatorio seguirlas al pie de la letra. Puedes adaptarlas según tus gustos, agregando otras carnes (res, cerdo), vegetales o frutas de temporada. Lo importante es mantener una alimentación equilibrada.</p>
+</div>
+    </div>
+
+    <div id="mujeresPanel" class="hidden">
+      <button class="sub-button" onclick="mostrarSeccion('mujeres','Ejercicios')">Ejercicios</button>
+      <button class="sub-button" onclick="mostrarSeccion('mujeres','Nutricion')">Guía Nutricional</button>
+
+      <div id="mujeresEjercicios" class="hidden">
+        <h3>Selecciona un día</h3>
+        <button class="sub-button" onclick="mostrarDia('mujeres','Lunes')">Lunes</button>
+        <button class="sub-button" onclick="mostrarDia('mujeres','Martes')">Martes</button>
+        <button class="sub-button" onclick="mostrarDia('mujeres','Miércoles')">Miércoles</button>
+        <button class="sub-button" onclick="mostrarDia('mujeres','Jueves')">Jueves</button>
+        <button class="sub-button" onclick="mostrarDia('mujeres','Viernes')">Viernes</button>
+        <button class="sub-button" onclick="mostrarDia('mujeres','Sábado')">Sábado</button>
+        <div id="mujeresLunes" class="hidden day-panel"><h4>Lunes – Glúteos y piernas</h4><ul><li>Hip thrust – 4x15</li><li>Zancadas – 3x12</li><li>Sentadillas sumo – 3x15</li></ul></div>
+        <div id="mujeresMartes" class="hidden day-panel"><h4>Martes – Espalda y abdomen</h4><ul><li>Jalón al pecho – 3x12</li><li>Plancha – 3x30 seg</li><li>Elevación de piernas – 3x15</li></ul></div>
+        <div id="mujeresMiércoles" class="hidden day-panel"><h4>Miércoles – Cardio HIIT</h4><ul><li>30 seg saltos + 30 seg pausa (10 rondas)</li><li>Abdominales bicicleta – 3x20</li></ul></div>
+        <div id="mujeresJueves" class="hidden day-panel"><h4>Jueves – Brazos y pecho</h4><ul><li>Flexiones asistidas – 3x12</li><li>Curl de bíceps – 3x15</li><li>Aperturas con mancuernas – 3x15</li></ul></div>
+        <div id="mujeresViernes" class="hidden day-panel"><h4>Viernes – Glúteos y core</h4><ul><li>Patadas traseras – 3x20</li><li>Puente glúteo – 3x15</li><li>Crunch con giro – 3x15</li></ul></div>
+        <div id="mujeresSábado" class="hidden day-panel"><h4>Sábado – Estiramiento / Yoga</h4><ul><li>Secuencia de yoga suave – 30 min</li></ul></div>
+      </div>
+
+      <div id="mujeresNutricion" class="hidden day-panel">
+<h3>Guía Nutricional – Mujeres</h3>
+<h4>Objetivo: Ganar masa muscular</h4>
+<ul>
+  <li><strong>Desayuno:</strong> Avena cocida con frutas + 2 huevos cocidos</li>
+  <li><strong>Almuerzo:</strong> Arroz integral con pollo a la plancha y ensalada</li>
+  <li><strong>Snack:</strong> Yogurt griego + nueces</li>
+  <li><strong>Cena:</strong> Pescado al horno con vegetales salteados</li>
+</ul>
+
+<h4>Objetivo: Perder grasa corporal</h4>
+<ul>
+  <li><strong>Desayuno:</strong> Batido con fruta, avena y chía</li>
+  <li><strong>Almuerzo:</strong> Pechuga a la plancha con ensalada y camote</li>
+  <li><strong>Snack:</strong> Fruta fresca o puñado de semillas</li>
+  <li><strong>Cena:</strong> Verduras cocidas y fuente ligera de proteína</li>
+</ul>
+
+<p style="margin-top:10px;"><em>Nota:</em> Puedes variar las opciones según tus preferencias. Agrega otros tipos de carnes, frutas o granos, siempre buscando equilibrio y variedad en tu alimentación.</p>
+</div>
+    </div>
+  
+<div class="intro-text" style="margin-top: 40px; background-color: #fff; padding: 20px; border-radius: 10px;">
+  <h3>Recomendaciones Generales de Carga y Tiempo</h3>
+  <p><strong>Para Varones:</strong> Si eres principiante, empieza con pesos moderados como 5 a 10 kg por mancuerna o barra vacía. Ajusta según control de técnica y progresión.</p>
+  <p><strong>Para Mujeres:</strong> Comienza con mancuernas entre 2 a 5 kg. Prioriza el movimiento controlado y aumenta solo si mantienes la forma correcta.</p>
+  <p><strong>Para los días de cardio o yoga (sábados):</strong> Realiza de 20 a 30 minutos de actividad continua según tu nivel. No se requiere carga, solo constancia y buena respiración.</p>
+</div>
+</section>
+</body>
+</html>
